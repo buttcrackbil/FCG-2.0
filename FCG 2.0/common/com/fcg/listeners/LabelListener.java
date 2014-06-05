@@ -3,7 +3,8 @@ package com.fcg.listeners;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import com.fcg.labels.PictureLabel;
+import javax.swing.JLabel;
+
 import com.fcg.panels.CardPanel;
 import com.fcg.quest.Quest;
 
@@ -17,7 +18,7 @@ public class LabelListener implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		PictureLabel label = (PictureLabel) arg0.getSource();
+		JLabel label = (JLabel) arg0.getSource();
 		
 		switch(label.getText()){
 			case "Quit" :
@@ -25,6 +26,9 @@ public class LabelListener implements MouseListener{
 				break;
 			case "Quest" :
 				Quest.start((CardPanel) label.getParent());
+				break;
+			default:
+				System.out.println(label.getText() + " is not registered");
 				break;
 		}
 	}

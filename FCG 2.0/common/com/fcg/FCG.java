@@ -15,6 +15,11 @@ import com.fcg.panels.CardPanel;
 public class FCG extends JFrame {
 	
 	/**
+	 * Static game frame
+	 */
+	public static FCG		game;
+	
+	/**
 	 * Quit label
 	 */
 	private PictureLabel	quit	= new PictureLabel("Quit");
@@ -32,7 +37,7 @@ public class FCG extends JFrame {
 	@SuppressWarnings("javadoc")
 	public static void main(String[] args) {
 		System.out.println("Loading Fallout Card Game");
-		new FCG();
+		game = new FCG();
 	}
 	
 	/**
@@ -48,7 +53,7 @@ public class FCG extends JFrame {
 		setVisible(true);
 		panel.setLayout(null);
 		panel.setBounds(0, 0, getWidth(), getHeight());
-		int parts = getHeight() /5;
+		int parts = getHeight() / 5;
 		quit.setBounds(0, panel.getHeight() - 100, 100, 100);
 		quest.setBounds(getWidth() - 100, parts * 0, 100, 100);
 		add(panel);
