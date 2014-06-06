@@ -2,8 +2,10 @@ package com.fcg;
 
 import javax.swing.JFrame;
 
+import com.fcg.card.playable.Weapon;
 import com.fcg.labels.PictureLabel;
 import com.fcg.panels.CardPanel;
+import com.fcg.quest.City;
 
 /**
  * Game frame
@@ -17,27 +19,28 @@ public class FCG extends JFrame {
 	/**
 	 * Static game frame
 	 */
-	public static FCG		game;
+	public static FCG			game;
 	
 	/**
 	 * Quit label
 	 */
-	private PictureLabel	quit	= new PictureLabel("Quit");
+	private PictureLabel		quit	= new PictureLabel("Quit");
 	
 	/**
 	 * Quest label
 	 */
-	private PictureLabel	quest	= new PictureLabel("Quest");
+	private PictureLabel		quest	= new PictureLabel("Quest");
 	
 	/**
 	 * The panel everything is added to
 	 */
-	private CardPanel		panel	= new CardPanel();
+	private static CardPanel	panel	= new CardPanel();
 	
 	@SuppressWarnings("javadoc")
 	public static void main(String[] args) {
 		System.out.println("Loading Fallout Card Game");
 		game = new FCG();
+		startCity();
 	}
 	
 	/**
@@ -57,9 +60,23 @@ public class FCG extends JFrame {
 		quit.setBounds(0, panel.getHeight() - 100, 100, 100);
 		quest.setBounds(getWidth() - 100, parts * 0, 100, 100);
 		add(panel);
-		panel.add(quit);
-		panel.add(quest);
-		panel.repaint();
+		// panel.add(quit);
+		// panel.add(quest);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	/**
+	 * For debugging purposes
+	 */
+	public static void startCity() {
+		City city = new City();
+		city.setStoreItems(new Weapon("Rifle", "Description", 1), new Weapon(
+				"Rifle", "Description", 5), new Weapon("Rifle", "Description",
+				1), new Weapon("Rifle", "Description", 5), new Weapon("Rifle",
+				"Description", 1), new Weapon("Rifle", "Description", 5),
+				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
+						"Description", 5));
+		panel.add(city);
+		panel.repaint();
 	}
 }

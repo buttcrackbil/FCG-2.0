@@ -26,7 +26,7 @@ public class CityButton extends JLabel {
 	public CityButton(String name, MouseListener listener) {
 		addMouseListener(listener);
 		setOpaque(true);
-		setBackground(Color.blue);
+		setBackground(Color.red);
 		setSize(100, 100);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setVerticalAlignment(SwingConstants.BOTTOM);

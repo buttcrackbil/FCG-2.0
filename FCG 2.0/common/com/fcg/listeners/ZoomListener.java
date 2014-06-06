@@ -20,7 +20,7 @@ public class ZoomListener implements MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		if (SwingUtilities.isLeftMouseButton(arg0)) {
+		if (SwingUtilities.isRightMouseButton(arg0)) {
 			Card card = (Card) arg0.getSource();
 			
 			card.zoom(card);
