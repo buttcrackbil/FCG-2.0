@@ -29,7 +29,7 @@ public class FCG extends JFrame {
 	/**
 	 * Quest label
 	 */
-	private PictureLabel		quest	= new PictureLabel("Quest");
+	private PictureLabel		quest	= new PictureLabel("Single Player");
 	
 	/**
 	 * The panel everything is added to
@@ -40,7 +40,7 @@ public class FCG extends JFrame {
 	public static void main(String[] args) {
 		System.out.println("Loading Fallout Card Game");
 		game = new FCG();
-		startCity();
+//		startCity();
 	}
 	
 	/**
@@ -60,8 +60,8 @@ public class FCG extends JFrame {
 		quit.setBounds(0, panel.getHeight() - 100, 100, 100);
 		quest.setBounds(getWidth() - 100, parts * 0, 100, 100);
 		add(panel);
-		// panel.add(quit);
-		// panel.add(quest);
+		panel.add(quit);
+		panel.add(quest);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -69,7 +69,7 @@ public class FCG extends JFrame {
 	 * For debugging purposes
 	 */
 	public static void startCity() {
-		City city = new City();
+		City city = City.baileysCrossroads;
 		city.setStoreItems(Weapon.rifleAmerican, Weapon.rifleChinese,
 				Weapon.flamerAmerican, Weapon.flamerChinese,
 				Weapon.sniperAmerican, Weapon.sniperChinese);

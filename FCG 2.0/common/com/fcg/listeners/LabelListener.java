@@ -24,7 +24,7 @@ public class LabelListener implements MouseListener{
 			case "Quit" :
 				System.exit(0);
 				break;
-			case "Quest" :
+			case "Single Player" :
 				Quest.start((CardPanel) label.getParent());
 				break;
 			default:

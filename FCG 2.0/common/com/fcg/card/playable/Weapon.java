@@ -25,35 +25,22 @@ import com.fcg.card.spendable.SpendableCard;
 public class Weapon extends PlayableCard {
 	
 	// All permanent weapons
-	
-	/**
-	 * American Rifleman
-	 */
+	@SuppressWarnings("javadoc")
 	public static Weapon	rifleAmerican	= new Weapon("Am. Rifle",
 													"American Rifle", 5);
-	/**
-	 * Chinese Rifleman
-	 */
+	@SuppressWarnings("javadoc")
 	public static Weapon	rifleChinese	= new Weapon("Ch. Rifle",
 													"Chinese Rifle", 5);
-	/**
-	 * American Flamer
-	 */
+	@SuppressWarnings("javadoc")
 	public static Weapon	flamerAmerican	= new Weapon("Am. Flamer",
 													"American Flame Thrower", 5);
-	/**
-	 * Chinese Flamer
-	 */
+	@SuppressWarnings("javadoc")
 	public static Weapon	flamerChinese	= new Weapon("Ch. Flamer",
 													"Chinese Flame Thrower", 5);
-	/**
-	 * American Sniper
-	 */
+	@SuppressWarnings("javadoc")
 	public static Weapon	sniperAmerican	= new Weapon("Am. Sniper",
 													"American Sniper", 8);
-	/**
-	 * Chinese Sniper
-	 */
+	@SuppressWarnings("javadoc")
 	public static Weapon	sniperChinese	= new Weapon("Ch. Sniper",
 													"Chinese Sniper", 8);
 	

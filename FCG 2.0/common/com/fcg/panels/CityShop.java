@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -57,12 +57,14 @@ public class CityShop extends JPanel {
 	/**
 	 * Constructor for shop
 	 * 
+	 * @param name
+	 *            Name of the store in the city
 	 * @param city
 	 *            City that this shop is on
 	 * @param cards
 	 *            Cards to be displayed (usually city store items)
 	 */
-	public CityShop(City city, Card... cards) {
+	public CityShop(String name, City city, Card... cards) {
 		cityCon = city;
 		cancelButton.setSize(100, 20);
 		buyButton.setSize(100, 20);
@@ -87,7 +89,7 @@ public class CityShop extends JPanel {
 		});
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setBorder(BorderFactory.createEtchedBorder());
+		JLabel label = new JLabel(name);
 		int par1 = 0;
 		int c = cards.length;
 		while (c >= 3) {
@@ -100,27 +102,24 @@ public class CityShop extends JPanel {
 		}
 		int height = ((par1 * 250) + 30);
 		this.panel.setPreferredSize(new Dimension(525, height));
-		this.panel.setBackground(Color.BLUE);
+		this.panel.setBackground(Color.LIGHT_GRAY);
+		label.setBounds((this.panel.getPreferredSize().width - 100) / 2, 0,
+				100, 20);
+		this.panel.add(label);
 		
 		int cardTrack = 0;
 		int j = 0;
-		if (!out) {
-			for (int i = 0; i < cards.length; i++) {
-				Card card = cards[i].copy();
-				card.addMouseListener(new ShopListener());
-				card.setLocation(24 + (175 * j), (250 * cardTrack) + 30);
-				this.panel.add(card);
-				this.panel.repaint();
-				j++;
-				if (j == 3) {
-					j -= 3;
-					cardTrack++;
-				}
+		for (int i = 0; i < cards.length; i++) {
+			Card card = cards[i].copy();
+			card.addMouseListener(new ShopListener());
+			card.setLocation(24 + (175 * j), (250 * cardTrack) + 30);
+			this.panel.add(card);
+			this.panel.repaint();
+			j++;
+			if (j == 3) {
+				j -= 3;
+				cardTrack++;
 			}
-			out = true;
-		} else {
-			// Remove from city
-			out = false;
 		}
 		
 		scrollPane = new JScrollPane(this.panel);
