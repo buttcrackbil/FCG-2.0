@@ -75,6 +75,14 @@ public class FCG extends JFrame {
 				1), new Weapon("Rifle", "Description", 5), new Weapon("Rifle",
 				"Description", 1), new Weapon("Rifle", "Description", 5),
 				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
+						"Description", 5),
+				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
+						"Description", 5),
+				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
+						"Description", 5),
+				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
+						"Description", 5),
+				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
 						"Description", 5));
 		panel.add(city);
 		panel.repaint();

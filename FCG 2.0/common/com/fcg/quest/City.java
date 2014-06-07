@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 import com.fcg.FCG;
 import com.fcg.card.Card;
 import com.fcg.labels.CityButton;
+import com.fcg.panels.CityShop;
 
 /**
  * [WIP] Class for cities found while questing
@@ -28,7 +31,7 @@ public class City extends JPanel {
 	/**
 	 * The panel that the store is displayed on
 	 */
-	JPanel storePanel = new JPanel();
+	JScrollPane		storePanel;
 	
 	/**
 	 * Adds button to travel to other areas
@@ -37,7 +40,7 @@ public class City extends JPanel {
 								
 								@Override
 								public void mouseClicked(MouseEvent arg0) {
-									System.out.println("Clicked go to button");
+									System.out.println("Clicked travel button");
 									System.exit(0);
 								}
 								
@@ -70,10 +73,18 @@ public class City extends JPanel {
 								public void mouseClicked(MouseEvent arg0) {
 									if (!out) {
 										System.out.println("Loaded Shop");
-										store("Debug Store", out);
+										store("Debug Store", out,
+												((City) ((CityButton) arg0
+														.getSource())
+														.getParent()
+														.getParent()));
 										out = true;
 									} else {
-										store("Debug Store", out);
+										store("Debug Store", out,
+												((City) ((CityButton) arg0
+														.getSource())
+														.getParent()
+														.getParent()));
 										out = false;
 									}
 								}
@@ -132,32 +143,20 @@ public class City extends JPanel {
 	 *            Name of store
 	 * @param out
 	 *            boolean of whether or not to remove or display the store
+	 * @param city
+	 *            This city. Must be pushed through
 	 */
-	public void store(String name, boolean out) {
-		if (!out) {
-			storePanel.removeAll();
-			storePanel.setBounds(25, 25, 500, 725);
-			storePanel.setBackground(Color.blue);
-			storePanel.setLayout(null);
-			int cardTrack = 0;
-			int j = 0;
-			for (int i = 0; i < getStoreItems().length; i++) {
-				Card card = getStoreItems()[i].copy();
-				card.setLocation(175 * j, 250 * cardTrack);
-				storePanel.add(card);
-				j++;
-				if (j == 3) {
-					j -= 3;
-					cardTrack++;
-				}
-			}
-			add(storePanel);
-			storePanel.repaint();
-			repaint();
-		}else{
-			remove(storePanel);
-			repaint();
-		}
+	public void store(String name, boolean out, City city) {
+		JInternalFrame panel = new JInternalFrame();
+		((BasicInternalFrameUI) panel.getUI()).setNorthPane(null);
+		panel.setBackground(Color.BLACK);
+		panel.setLocation(25, 25);
+		panel.setSize(500, 750);
+		CityShop shop = new CityShop(this.getStoreItems());
+		panel.getContentPane().add(shop);
+		city.add(panel);
+		panel.setVisible(true);
+		city.repaint();
 	}
 	
 	/**
