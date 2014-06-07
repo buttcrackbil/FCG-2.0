@@ -70,20 +70,9 @@ public class FCG extends JFrame {
 	 */
 	public static void startCity() {
 		City city = new City();
-		city.setStoreItems(new Weapon("Rifle", "Description", 1), new Weapon(
-				"Rifle", "Description", 5), new Weapon("Rifle", "Description",
-				1), new Weapon("Rifle", "Description", 5), new Weapon("Rifle",
-				"Description", 1), new Weapon("Rifle", "Description", 5),
-				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
-						"Description", 5),
-				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
-						"Description", 5),
-				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
-						"Description", 5),
-				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
-						"Description", 5),
-				new Weapon("Rifle", "Description", 1), new Weapon("Rifle",
-						"Description", 5));
+		city.setStoreItems(Weapon.rifleAmerican, Weapon.rifleChinese,
+				Weapon.flamerAmerican, Weapon.flamerChinese,
+				Weapon.sniperAmerican, Weapon.sniperChinese);
 		panel.add(city);
 		panel.repaint();
 	}

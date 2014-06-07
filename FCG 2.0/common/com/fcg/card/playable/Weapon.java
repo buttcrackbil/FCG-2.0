@@ -19,20 +19,53 @@ import com.fcg.card.spendable.SpendableCard;
  * Weapon card
  * 
  * @author Alex
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class Weapon extends PlayableCard {
 	
+	// All permanent weapons
+	
+	/**
+	 * American Rifleman
+	 */
+	public static Weapon	rifleAmerican	= new Weapon("Am. Rifle",
+													"American Rifle", 5);
+	/**
+	 * Chinese Rifleman
+	 */
+	public static Weapon	rifleChinese	= new Weapon("Ch. Rifle",
+													"Chinese Rifle", 5);
+	/**
+	 * American Flamer
+	 */
+	public static Weapon	flamerAmerican	= new Weapon("Am. Flamer",
+													"American Flame Thrower", 5);
+	/**
+	 * Chinese Flamer
+	 */
+	public static Weapon	flamerChinese	= new Weapon("Ch. Flamer",
+													"Chinese Flame Thrower", 5);
+	/**
+	 * American Sniper
+	 */
+	public static Weapon	sniperAmerican	= new Weapon("Am. Sniper",
+													"American Sniper", 8);
+	/**
+	 * Chinese Sniper
+	 */
+	public static Weapon	sniperChinese	= new Weapon("Ch. Sniper",
+													"Chinese Sniper", 8);
+	
 	/**
 	 * Damage boost of card
 	 */
-	private int		damage;
+	private int				damage;
 	
 	/**
 	 * Label to display damage boost
 	 */
-	JLabel	damageLabel	= new JLabel();
+	JLabel					damageLabel		= new JLabel();
 	
 	/**
 	 * Creates a weapon card

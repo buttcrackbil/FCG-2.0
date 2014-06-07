@@ -47,7 +47,7 @@ public abstract class Card extends JPanel {
 	/**
 	 * Tracks id number in between card creations
 	 */
-	private static int		idTracker	= 1;
+	private static int		idTracker	= 0;
 	
 	/**
 	 * Makes a new card
@@ -77,7 +77,7 @@ public abstract class Card extends JPanel {
 	 * 
 	 */
 	public String getName() {
-		return nameLabel.getText();
+		return name;
 	}
 	
 	/**
@@ -87,9 +87,25 @@ public abstract class Card extends JPanel {
 	 *            Card to be registered
 	 */
 	public void registerCard(Card par1) {
-		id = idTracker;
-		idTracker++;
-		cardList[id] = par1;
+		boolean add = true;
+		for (int i = 0; i < cardList.length; i++) {
+			if (cardList[i] != null) {
+				if (cardList[i].getName().equals(getName())) {
+					add = false;
+					break;
+				} else {
+					add = true;
+				}
+			} else {
+				break;
+			}
+		}
+		if (add) {
+			id = idTracker;
+			idTracker++;
+			cardList[id] = this;
+			System.out.println( getName() + " has been added to list at id " + id);
+		}
 	}
 	
 	/**

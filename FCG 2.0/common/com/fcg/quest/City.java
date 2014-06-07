@@ -26,90 +26,109 @@ public class City extends JPanel {
 	/**
 	 * Pane for all buttons to be added in city
 	 */
-	JPanel			buttons	= new JPanel();
+	JPanel					buttons		= new JPanel();
 	
 	/**
 	 * The panel that the store is displayed on
 	 */
-	JScrollPane		storePanel;
+	JScrollPane				storePanel;
+	
+	/**
+	 * Frame containing shop
+	 */
+	public JInternalFrame	panel;
 	
 	/**
 	 * Adds button to travel to other areas
 	 */
-	CityButton		travel	= new CityButton("Travel", new MouseListener() {
-								
-								@Override
-								public void mouseClicked(MouseEvent arg0) {
-									System.out.println("Clicked travel button");
-									System.exit(0);
-								}
-								
-								@Override
-								public void mouseEntered(MouseEvent arg0) {
-								}
-								
-								@Override
-								public void mouseExited(MouseEvent arg0) {
-								}
-								
-								@Override
-								public void mousePressed(MouseEvent arg0) {
-								}
-								
-								@Override
-								public void mouseReleased(MouseEvent arg0) {
-								}
-								
-							});
+	CityButton				travel		= new CityButton("Travel",
+												new MouseListener() {
+													
+													@Override
+													public void mouseClicked(
+															MouseEvent arg0) {
+														System.out
+																.println("Clicked travel button");
+														System.exit(0);
+													}
+													
+													@Override
+													public void mouseEntered(
+															MouseEvent arg0) {
+													}
+													
+													@Override
+													public void mouseExited(
+															MouseEvent arg0) {
+													}
+													
+													@Override
+													public void mousePressed(
+															MouseEvent arg0) {
+													}
+													
+													@Override
+													public void mouseReleased(
+															MouseEvent arg0) {
+													}
+													
+												});
+	
+	/**
+	 * Keeps track of whether to add new shop or  not to screen
+	 */
+	public boolean			clickable	= true;
 	
 	/**
 	 * Adds shop button to city
 	 */
-	CityButton		shop	= new CityButton("Shop", new MouseListener() {
-								
-								boolean	out;
-								
-								@Override
-								public void mouseClicked(MouseEvent arg0) {
-									if (!out) {
-										System.out.println("Loaded Shop");
-										store("Debug Store", out,
-												((City) ((CityButton) arg0
-														.getSource())
-														.getParent()
-														.getParent()));
-										out = true;
-									} else {
-										store("Debug Store", out,
-												((City) ((CityButton) arg0
-														.getSource())
-														.getParent()
-														.getParent()));
-										out = false;
-									}
-								}
-								
-								@Override
-								public void mouseEntered(MouseEvent arg0) {
-								}
-								
-								@Override
-								public void mouseExited(MouseEvent arg0) {
-								}
-								
-								@Override
-								public void mousePressed(MouseEvent arg0) {
-								}
-								
-								@Override
-								public void mouseReleased(MouseEvent arg0) {
-								}
-							});
+	CityButton				shop		= new CityButton("Shop",
+												new MouseListener() {
+													
+													boolean	out;
+													
+													@Override
+													public void mouseClicked(
+															MouseEvent arg0) {
+														if (clickable) {
+															System.out
+																	.println("Loaded Shop");
+															store("Debug Store",
+																	out,
+																	((City) ((CityButton) arg0
+																			.getSource())
+																			.getParent()
+																			.getParent()));
+															out = true;
+															clickable = false;
+														}
+													}
+													
+													@Override
+													public void mouseEntered(
+															MouseEvent arg0) {
+													}
+													
+													@Override
+													public void mouseExited(
+															MouseEvent arg0) {
+													}
+													
+													@Override
+													public void mousePressed(
+															MouseEvent arg0) {
+													}
+													
+													@Override
+													public void mouseReleased(
+															MouseEvent arg0) {
+													}
+												});
 	
 	/**
 	 * Keeps track of all cards available in store
 	 */
-	private Card[]	storeCards;
+	private Card[]			storeCards;
 	
 	/**
 	 * Make a new location
@@ -147,16 +166,15 @@ public class City extends JPanel {
 	 *            This city. Must be pushed through
 	 */
 	public void store(String name, boolean out, City city) {
-		JInternalFrame panel = new JInternalFrame();
+		CityShop par1 = new CityShop(city, city.getStoreItems());
+		panel = new JInternalFrame();
 		((BasicInternalFrameUI) panel.getUI()).setNorthPane(null);
 		panel.setBackground(Color.BLACK);
+		panel.setSize(510, 800);
+		panel.getContentPane().add(par1);
 		panel.setLocation(25, 25);
-		panel.setSize(500, 750);
-		CityShop shop = new CityShop(this.getStoreItems());
-		panel.getContentPane().add(shop);
 		city.add(panel);
 		panel.setVisible(true);
-		city.repaint();
 	}
 	
 	/**
