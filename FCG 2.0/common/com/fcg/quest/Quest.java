@@ -36,7 +36,7 @@ public class Quest {
 	 *            Tasks to be performed in quest
 	 */
 	public Quest(final String name, final City start, Task... tasks) {
-		CityButton questLabel = new CityButton(name, new MouseListener() {
+		CityButton questLabel = new CityButton("[WIP] Op Anc", new MouseListener() {
 			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
