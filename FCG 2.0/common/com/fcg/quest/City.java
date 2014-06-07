@@ -198,8 +198,6 @@ public class City extends JPanel {
 	 * 
 	 * @param name
 	 *            Name of store
-	 * @param out
-	 *            boolean of whether or not to remove or display the store
 	 * @param city
 	 *            This city. Must be pushed through
 	 */
