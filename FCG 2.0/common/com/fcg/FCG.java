@@ -2,8 +2,12 @@ package com.fcg;
 
 import javax.swing.JFrame;
 
+import com.fcg.card.playable.Armor;
+import com.fcg.card.playable.Enemy;
+import com.fcg.card.playable.Player;
 import com.fcg.card.playable.Weapon;
 import com.fcg.labels.PictureLabel;
+import com.fcg.panels.BattlePanel;
 import com.fcg.panels.CardPanel;
 import com.fcg.quest.City;
 
@@ -34,13 +38,12 @@ public class FCG extends JFrame {
 	/**
 	 * The panel everything is added to
 	 */
-	private static CardPanel	panel	= new CardPanel();
+	public static CardPanel	panel	= new CardPanel();
 	
 	@SuppressWarnings("javadoc")
 	public static void main(String[] args) {
 		System.out.println("Loading Fallout Card Game");
 		game = new FCG();
-//		startCity();
 	}
 	
 	/**
@@ -62,18 +65,14 @@ public class FCG extends JFrame {
 		add(panel);
 		panel.add(quit);
 		panel.add(quest);
+		// Player player = new Player("Player", "Description", 20, 5, 1);
+		// player.equipArmor(new Armor("Armor", "Description", 2));
+		// player.equipWeapon(Weapon.sniperChinese);
+		// Enemy enemy = new Enemy("Enemy", "Description", 10, 5);
+		// BattlePanel bp = new BattlePanel(player, enemy);
+		// bp.setBounds(0, 0, getWidth(), getHeight());
+		// add(bp);
+		repaint();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
-	/**
-	 * For debugging purposes
-	 */
-	public static void startCity() {
-		City city = City.baileysCrossroads;
-		city.setStoreItems(Weapon.rifleAmerican, Weapon.rifleChinese,
-				Weapon.flamerAmerican, Weapon.flamerChinese,
-				Weapon.sniperAmerican, Weapon.sniperChinese);
-		panel.add(city);
-		panel.repaint();
 	}
 }

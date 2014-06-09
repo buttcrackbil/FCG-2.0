@@ -128,6 +128,7 @@ public class CityShop extends JPanel {
 		scrollPane
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setPreferredSize(new Dimension(550, 750));
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		add(scrollPane);
 		add(cancelButton);
 		add(buyButton);

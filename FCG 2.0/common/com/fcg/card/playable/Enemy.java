@@ -91,12 +91,22 @@ public class Enemy extends PlayableCard {
 		attack = par4;
 		setType(PlayableCard.CREATURE);
 		add(descriptionLabel);
-		healthLabel.setText("Health: " + par3);
-		attackLabel.setText("Attack: " + par4);
+		healthLabel.setText("Health: " + health);
+		attackLabel.setText("Attack: " + attack);
 		healthLabel.setBounds(0, getHeight() - 40, getWidth(), 20);
 		attackLabel.setBounds(0, getHeight() - 20, getWidth(), 20);
 		add(healthLabel);
 		add(attackLabel);
+	}
+	
+	/**
+	 * Sets health of card
+	 * 
+	 * @param i
+	 */
+	public void setHealth(int i){
+		health = i;
+		refreshHealthLabel();
 	}
 	
 	/**
@@ -130,6 +140,7 @@ public class Enemy extends PlayableCard {
 		attackLabel.setText(attackLabel.getText() + " "
 				+ par1.damageLabel.getText());
 		repaint();
+		attack += par1.getDamage();
 		equippedWeapon = par1;
 		equippedCards++;
 	}
@@ -147,8 +158,16 @@ public class Enemy extends PlayableCard {
 		healthLabel.setText(healthLabel.getText() + " "
 				+ par1.armorLabel.getText());
 		repaint();
+		health += par1.getArmor();
 		equippedArmor = par1;
 		equippedCards++;
+	}
+	
+	/**
+	 * @return Equipped weapon (null if none is equipped)
+	 */
+	public Armor getEquippedArmor(){
+		return equippedArmor;
 	}
 	
 	/**
@@ -188,6 +207,11 @@ public class Enemy extends PlayableCard {
 			equippedWeapon.setLocation(getLocation().x, getLocation().y
 					- (25 * equippedCards));
 		}
+	}
+	
+	public void refreshHealthLabel(){
+		healthLabel.setText("Health: " + health);
+		healthLabel.repaint();
 	}
 	
 	@Override

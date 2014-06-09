@@ -117,6 +117,11 @@ public class Player extends PlayableCard {
 		add(levelLabel);
 	}
 	
+	public void setHealth(int i) {
+		health = i;
+		refreshHealthLabel();
+	}
+	
 	/**
 	 * Gets the health of the card
 	 * 
@@ -157,6 +162,7 @@ public class Player extends PlayableCard {
 		attackLabel.setText(attackLabel.getText() + " "
 				+ par1.damageLabel.getText());
 		repaint();
+		attack += par1.getDamage();
 		equippedWeapon = par1;
 		equippedCards++;
 	}
@@ -171,11 +177,21 @@ public class Player extends PlayableCard {
 		armorLocation = par1.getLocation();
 		par1.setLocation(getLocation().x, getLocation().y
 				- (25 * equippedCards));
+		System.out.println(par1.getLocation());
+		System.out.println(getLocation());
 		healthLabel.setText(healthLabel.getText() + " "
 				+ par1.armorLabel.getText());
 		repaint();
+		health += par1.getArmor();
 		equippedArmor = par1;
 		equippedCards++;
+	}
+	
+	/**
+	 * @return Equipped weapon (null if none is equipped)
+	 */
+	public Armor getEquippedArmor() {
+		return equippedArmor;
 	}
 	
 	/**
@@ -215,6 +231,11 @@ public class Player extends PlayableCard {
 			equippedWeapon.setLocation(getLocation().x, getLocation().y
 					- (25 * equippedCards));
 		}
+	}
+	
+	public void refreshHealthLabel() {
+		healthLabel.setText("Health: " + health);
+		healthLabel.repaint();
 	}
 	
 	// Should never be called. Only one of these should be on screen at once
@@ -285,10 +306,10 @@ public class Player extends PlayableCard {
 				((Player) father).attackLabel.getLocation().y * multiplier,
 				((Player) father).attackLabel.getWidth() * multiplier,
 				((Player) father).attackLabel.getHeight() * multiplier);
-		Rectangle level = new Rectangle((card.getWidth() - (((Player) father).levelLabel.getWidth()
-				* multiplier)), 0, ((Player) father).levelLabel.getWidth()
-				* multiplier, ((Player) father).levelLabel.getHeight()
-				* multiplier);
+		Rectangle level = new Rectangle(
+				(card.getWidth() - (((Player) father).levelLabel.getWidth() * multiplier)),
+				0, ((Player) father).levelLabel.getWidth() * multiplier,
+				((Player) father).levelLabel.getHeight() * multiplier);
 		nameLabel.setBounds(name);
 		descriptionLabel.setBounds(description);
 		healthLabel.setBounds(health);
@@ -328,6 +349,8 @@ public class Player extends PlayableCard {
 		card.add(levelLabel);
 		frame.add(card);
 		frame.setVisible(true);
+		//For refreshing until full repaint method is done
+		getParent().add(equippedArmor);
+		getParent().repaint();
 	}
-	
 }
